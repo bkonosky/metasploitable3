@@ -3,6 +3,10 @@ if not exist "C:\Windows\Temp\7z920-x64.msi" (
 )
 msiexec /qb /i C:\Windows\Temp\7z920-x64.msi
 
+:: if not exist "C:\Windows\Temp\nircmd.zip" (
+::    powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://www.nirsoft.net/utils/nircmd.zip', 'C:\Windows\Temp\nircmd.zip')" <NUL
+:: )
+
 if "%PACKER_BUILDER_TYPE%" equ "vmware-iso" goto :vmware
 if "%PACKER_BUILDER_TYPE%" equ "virtualbox-iso" goto :virtualbox
 if "%PACKER_BUILDER_TYPE%" equ "parallels-iso" goto :parallels
@@ -39,12 +43,19 @@ cmd /c C:\Windows\Temp\virtualbox\VBoxWindowsAdditions.exe /S
 goto :done
 
 :parallels
+
+
 if exist "C:\Users\vagrant\prl-tools-win.iso" (
 	move /Y C:\Users\vagrant\prl-tools-win.iso C:\Windows\Temp
 	cmd /C "C:\Program Files\7-Zip\7z.exe" x C:\Windows\Temp\prl-tools-win.iso -oC:\Windows\Temp\parallels
-	cmd /C C:\Windows\Temp\parallels\PTAgent.exe /install_silent
+  echo "Starting Parallel tools install."
+   A:\psexec64.exe -H -accepteula C:\Windows\Temp\parallels\PTAgent.exe /install_silent
+
+  powershell -Command "Start-Sleep 60"
+  echo "Done sleeping"
 	rd /S /Q "c:\Windows\Temp\parallels"
 )
+
 
 :done
 msiexec /qb /x C:\Windows\Temp\7z920-x64.msi

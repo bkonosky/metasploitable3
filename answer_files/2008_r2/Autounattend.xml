@@ -249,6 +249,11 @@
                     <Order>25</Order>
                     <Description>Disable password expiration for vagrant user</Description>
                 </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                  <CommandLine>cmd.exe /c vm-guest-tools.bat</CommandLine>
+                  <Description>Install VM Tools</Description>
+                  <Order>97</Order>
+                </SynchronousCommand>
                 <!-- WITHOUT WINDOWS UPDATES -->
                 <SynchronousCommand wcm:action="add">
 					<CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\openssh.ps1 -AutoStart</CommandLine>
