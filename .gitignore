@@ -3,8 +3,12 @@ packer_cache/
 *.exe
 *.msi
 *.msu
+<<<<<<< HEAD
 *.iso
 
+=======
+*.DS_Store
+>>>>>>> 262f34dd194aee3e824ff91d0d8fe1f8f989f73f
 resources/manageengine/setup.log
 windows_2008_r2_virtualbox.box
 windows_2008_r2_vmware.box
