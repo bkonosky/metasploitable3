@@ -250,15 +250,6 @@
                     <Order>25</Order>
                     <Description>Disable password expiration for vagrant user</Description>
                 </SynchronousCommand>
-<<<<<<< HEAD
-                <SynchronousCommand wcm:action="add">
-                  <CommandLine>cmd.exe /c vm-guest-tools.bat</CommandLine>
-                  <Description>Install VM Tools</Description>
-                  <Order>97</Order>
-                </SynchronousCommand>
-                <!-- WITHOUT WINDOWS UPDATES -->
-=======
->>>>>>> 262f34dd194aee3e824ff91d0d8fe1f8f989f73f
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>cmd.exe /c mkdir -p C:\vagrant\scripts</CommandLine>
                     <Description>Create directory for vagrant files to avoid provisioner bug with packer.</Description>
